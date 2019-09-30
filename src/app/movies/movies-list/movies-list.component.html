@@ -1,0 +1,29 @@
+<div class="card mt-4">
+    <h4 class="card-header">Peliculas en cartelera</h4>
+    <div class="card-body">
+        <form [formGroup]="formGroup">
+
+            <input type="date" name="bday" formControlName="fecha_creacion" (change)="getMoviesFecha()">
+
+            <mat-grid-list cols="4" rowHeight="220px" gutterSize="5px">
+                <mat-grid-tile *ngFor="let movie of movies">
+                    <div style="margin: 10px">
+                        <img class="image-card" [src]="movie.url_img" alt="{{movie.nombre}}">
+                    </div>
+                    <mat-grid-tile-header style="align-items: center; align-content: center">
+                        <h3>{{movie.nombre}}</h3>
+
+                    </mat-grid-tile-header>
+                    <mat-grid-tile-footer>
+                        <h4>{{movie.descripcion}}</h4>
+
+                    </mat-grid-tile-footer>
+                    <div class="example-button-row">
+                        <button mat-raised-button (click)="openDialog(movie.id,movie.nombre)">Reservar</button>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+
+    </div>
+</div>

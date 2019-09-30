@@ -1,0 +1,47 @@
+
+<div >
+    <div class="card">
+        <div style="color: red" *ngIf="message != null">{{message.message}}</div>
+        <h4 class="card-header">Reservar pelicula: {{data.nombrePelicula}} </h4>
+        <div class="card-body">
+            <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                    <label for="Cedula">Cedula</label>
+                    <input type="text" formControlName="cedula" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.cedula.errors }" />
+                    <div *ngIf="submitted && f.cedula.errors" class="invalid-feedback">
+                        <div *ngIf="f.cedula.errors.required">Cedula requerido</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Cedula">correo</label>
+                    <input type="text" formControlName="correo" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.correo.errors }" />
+                    <div *ngIf="submitted && f.correo.errors" class="invalid-feedback">
+                        <div *ngIf="f.correo.errors.required">Correo requerido</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Cedula">nombre</label>
+                    <input type="text" formControlName="nombre" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+                    <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                        <div *ngIf="f.nombre.errors.required">Nombre requerido</div>
+                    </div>
+                </div>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder=""
+                        formControlName="fecha_reserva">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div mat-dialog-actions>
+                    <button mat-button (click)="onClick()" [disabled]="!formGroup.valid">Reservar</button>
+                    <button mat-button [mat-dialog-close]="data.idMovie" cdkFocusInitial>Cancelar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
