@@ -32,14 +32,13 @@ export class MoviesCreateComponent implements OnInit {
     });
   }
   gotoList() {
-    this.router.navigate(['/ListMovies']);
+    this.router.navigate(['/']);
   }
 
   onSubmit() {
-    ;
     this.moviesService.save(this.formGroup.value).subscribe(result => {
-      ;
-      //this.gotoList();
+      
+      this.gotoList();
       console.log(result)
     }, error => console.error(error));
   }
